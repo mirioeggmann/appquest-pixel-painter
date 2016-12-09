@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Pixel Painter</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- predefined colors at http://appquest.hsr.ch/2016/pixel-maler -->
+    <string name="blue">Blue</string>
+    <string name="green">Green</string>
+    <string name="yellow">Yellow</string>
+    <string name="red">Red</string>
+    <string name="grey">Grey</string>
+    <string name="black">Black</string>
+    <string name="white">White</string>
+</resources>

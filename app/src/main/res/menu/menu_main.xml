@@ -1,0 +1,40 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="jmelab.ch.pixelpainter.Main_Activity">
+    <item
+        android:id="@+id/color_black"
+        android:orderInCategory="100"
+        android:title="@string/black"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/color_blue"
+        android:orderInCategory="100"
+        android:title="@string/blue"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/color_green"
+        android:orderInCategory="100"
+        android:title="@string/green"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/color_grey"
+        android:orderInCategory="100"
+        android:title="@string/grey"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/color_red"
+        android:orderInCategory="100"
+        android:title="@string/red"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/color_white"
+        android:orderInCategory="100"
+        android:title="@string/white"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/color_yellow"
+        android:orderInCategory="100"
+        android:title="@string/yellow"
+        app:showAsAction="never" />
+</menu>
