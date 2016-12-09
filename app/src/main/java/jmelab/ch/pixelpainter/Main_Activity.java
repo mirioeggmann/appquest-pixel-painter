@@ -1,14 +1,20 @@
 package jmelab.ch.pixelpainter;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import jmelab.ch.pixelpainter.utils.Logbook_Factory;
 import jmelab.ch.pixelpainter.view.Square_View;
 
 public class Main_Activity extends AppCompatActivity {
@@ -21,8 +27,14 @@ public class Main_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+
+        ((FloatingActionButton) findViewById(R.id.save_picture)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exportGridToLogbook();
+            }
+        });
 
         getWindowManager().getDefaultDisplay().getSize(screenSize);
 
@@ -31,6 +43,18 @@ public class Main_Activity extends AppCompatActivity {
         mainLayout.addView(squareView);
 
         Log.d(getClass().toString(), "View successfully initialized!");
+    }
+
+    private void exportGridToLogbook() {
+        Intent logbookIntent = new Logbook_Factory(squareView.getPixelGrid(), this).getLoogbookIntent();
+        if (getPackageManager().queryIntentActivities(logbookIntent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
+            Toast.makeText(this, "Logbook app not installed", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        startActivity(logbookIntent);
+
+        Toast.makeText(this, "Data exported successfully!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -49,25 +73,25 @@ public class Main_Activity extends AppCompatActivity {
 
         switch (id) {
             case R.id.color_black:
-                squareView.setActualColor(R.color.black);
+                squareView.setCurrentSelectedColor(R.color.black);
                 break;
             case R.id.color_blue:
-                squareView.setActualColor(R.color.blue);
+                squareView.setCurrentSelectedColor(R.color.blue);
                 break;
             case R.id.color_green:
-                squareView.setActualColor(R.color.green);
+                squareView.setCurrentSelectedColor(R.color.green);
                 break;
             case R.id.color_grey:
-                squareView.setActualColor(R.color.grey);
+                squareView.setCurrentSelectedColor(R.color.grey);
                 break;
             case R.id.color_red:
-                squareView.setActualColor(R.color.red);
+                squareView.setCurrentSelectedColor(R.color.red);
                 break;
             case R.id.color_white:
-                squareView.setActualColor(R.color.white);
+                squareView.setCurrentSelectedColor(R.color.white);
                 break;
             case R.id.color_yellow:
-                squareView.setActualColor(R.color.yellow);
+                squareView.setCurrentSelectedColor(R.color.yellow);
                 break;
             default:
                 return false;

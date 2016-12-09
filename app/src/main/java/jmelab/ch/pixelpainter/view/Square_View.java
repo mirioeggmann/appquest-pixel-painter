@@ -16,26 +16,22 @@ import jmelab.ch.pixelpainter.view.listener.Square_OnTouch_Listener;
 public class Square_View extends View {
     private static final Paint PAINT = new Paint();
 
-    private int actualColor = R.color.white;
+    private int currentSelectedColor = R.color.white;
     private Pixel[][] pixelGrid;
 
     public int fullSquareSize;
     public int singleSquareSize;
     private RelativeLayout mainLayout;
 
-    public void setActualColor(int color) {
-        this.actualColor = color;
+    public void setCurrentSelectedColor(int color) {
+        this.currentSelectedColor = color;
     }
 
-    public int getActualColor() {
-        return this.actualColor;
+    public int getCurrentSelectedColor() {
+        return this.currentSelectedColor;
     }
 
     public void addPixelObject(Pixel pixelObject) {
-        if (pixelGrid == null) {
-            this.pixelGrid = new Pixel[13][13];
-        }
-
         Log.i(getClass().toString(), "Adding pixel with color " + pixelObject.getColorAsString() + " to coordinates (" + pixelObject.getX() + "/" + pixelObject.getY() + ").");
 
         pixelGrid[pixelObject.getX()][pixelObject.getY()] = pixelObject;
@@ -43,14 +39,29 @@ public class Square_View extends View {
         updateView();
     }
 
+    public Pixel[][] getPixelGrid() {
+        return this.pixelGrid;
+    }
+
     public Square_View(Point screenSize, RelativeLayout superLayout, Context context) {
         super(context);
+
+        createDefaultPixelGrid();
 
         this.fullSquareSize = calculateSquareSize(screenSize);
         this.singleSquareSize = fullSquareSize / 14;
         this.mainLayout = superLayout;
 
         this.setOnTouchListener(new Square_OnTouch_Listener(this));
+    }
+
+    private void createDefaultPixelGrid() {
+        pixelGrid = new Pixel[13][13];
+        for (int x = 0; x < pixelGrid.length; x++) {
+            for (int y = 0; y < pixelGrid.length; y++) {
+                pixelGrid[x][y] = new Pixel(x, y, currentSelectedColor);
+            }
+        }
     }
 
     private int calculateSquareSize(Point screenSize) {

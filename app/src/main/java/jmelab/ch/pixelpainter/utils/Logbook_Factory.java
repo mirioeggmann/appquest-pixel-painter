@@ -25,10 +25,6 @@ public class Logbook_Factory {
 
     public Logbook_Factory(Pixel[][] pixelGrid, Context context) {
         logbookIntent = new Intent("ch.appquest.intent.LOG");
-        if (context.getPackageManager().queryIntentActivities(logbookIntent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
-            Toast.makeText(context, "Logbook app not installed", Toast.LENGTH_SHORT).show();
-            return;
-        }
 
         try {
             createLogMessage(pixelGrid);
