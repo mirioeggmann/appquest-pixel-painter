@@ -20,7 +20,11 @@ public class Square_OnTouch_Listener implements View.OnTouchListener {
 
         Log.d(getClass().toString(), "Click registered at " + clickedCoordinates.getX() + ":" + clickedCoordinates.getY());
 
-        squareView.addPixelObject(new Pixel(clickedCoordinates.getX(), clickedCoordinates.getY(), squareView.getActualColor()));
+        if (clickedCoordinates.getX() <= 12 && clickedCoordinates.getY() <= 12) {
+            squareView.addPixelObject(new Pixel(clickedCoordinates.getX(), clickedCoordinates.getY(), squareView.getActualColor()));
+        } else {
+            Log.w(getClass().toString(), "Clicked out of range!");
+        }
 
         return false;
     }

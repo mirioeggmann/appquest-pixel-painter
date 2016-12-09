@@ -74,12 +74,12 @@ public class Square_View extends View {
                 if (this.pixelGrid[x][y] == null) {
                     Log.w(getClass().toString(), "Pixel at (" + x + "/" + y + ") is missing!");
                 } else {
-
+                    // -2 in size and +1 in location is to create a border
                     TextView pixel = new TextView(this.getContext());
                     pixel.setHeight(singleSquareSize - 2);
                     pixel.setWidth(singleSquareSize - 2);
-                    pixel.setX(singleSquareSize * pixelGrid[x][y].getX());
-                    pixel.setY(singleSquareSize * pixelGrid[x][y].getY());
+                    pixel.setX(singleSquareSize * pixelGrid[x][y].getX() + 1);
+                    pixel.setY(singleSquareSize * pixelGrid[x][y].getY() + 1);
                     pixel.setBackgroundResource(pixelGrid[x][y].getColor());
 
                     mainLayout.addView(pixel);
@@ -90,10 +90,10 @@ public class Square_View extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        for (int x = 0; x <= fullSquareSize; x += singleSquareSize) {
-            for (int y = 0; y <= fullSquareSize; y += singleSquareSize) {
+        for (int x = 0; x < fullSquareSize; x += singleSquareSize) {
+            for (int y = 0; y < fullSquareSize; y += singleSquareSize) {
                 // Vertical
-                canvas.drawLine(x, 0, x, fullSquareSize, PAINT);
+                canvas.drawLine(x, 0, x, fullSquareSize - singleSquareSize, PAINT);
 
                 // Horizontal
                 canvas.drawLine(0, y, fullSquareSize, y, PAINT);
