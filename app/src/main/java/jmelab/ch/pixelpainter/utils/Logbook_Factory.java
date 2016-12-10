@@ -44,11 +44,13 @@ public class Logbook_Factory {
         JSONArray pixelArray = new JSONArray();
         for (int x = 0; x < pixelGrid.length; x++) {
             for (int y = 0; y < pixelGrid[x].length; y++) {
-                JSONObject pixel = new JSONObject();
-                pixel.put("y", String.valueOf(y));
-                pixel.put("x", String.valueOf(x));
-                pixel.put("color", detectPixelColor(pixelGrid[x][y]));
-                pixelArray.put(pixel);
+                if (!detectPixelColor(pixelGrid[x][y]).equals("#FFFFFFFF")) {
+                    JSONObject pixel = new JSONObject();
+                    pixel.put("y", String.valueOf(y));
+                    pixel.put("x", String.valueOf(x));
+                    pixel.put("color", detectPixelColor(pixelGrid[x][y]));
+                    pixelArray.put(pixel);
+                }
             }
         }
 

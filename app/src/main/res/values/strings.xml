@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pixel Painter</string>
+    <string name="app_name">AppQuest Pixel Painter</string>
     <string name="action_settings">Settings</string>
 
     <!-- predefined colors at http://appquest.hsr.ch/2016/pixel-maler -->
