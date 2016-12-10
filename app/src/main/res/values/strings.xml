@@ -3,11 +3,20 @@
     <string name="action_settings">Settings</string>
 
     <!-- predefined colors at http://appquest.hsr.ch/2016/pixel-maler -->
+    <string name="black">Black</string>
     <string name="blue">Blue</string>
     <string name="green">Green</string>
-    <string name="yellow">Yellow</string>
-    <string name="red">Red</string>
     <string name="grey">Grey</string>
-    <string name="black">Black</string>
+    <string name="red">Red</string>
     <string name="white">White</string>
+    <string name="yellow">Yellow</string>
+
+    <!-- hex values of colors -->
+    <string name="black_hex">#000000FF</string>
+    <string name="blue_hex">#1364B7FF</string>
+    <string name="green_hex">#13B717FF</string>
+    <string name="grey_hex">#B7B7B7FF</string>
+    <string name="red_hex">#D90505FF</string>
+    <string name="white_hext">#FFFFFFFF</string>
+    <string name="yellow_hex">#FFEA00FF</string>
 </resources>

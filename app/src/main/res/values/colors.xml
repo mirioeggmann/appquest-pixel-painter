@@ -5,11 +5,11 @@
     <color name="colorAccent">#FF4081</color>
 
     <!-- predefined colors at http://appquest.hsr.ch/2016/pixel-maler -->
+    <color name="black">#000000</color>
     <color name="blue">#1364B7</color>
     <color name="green">#13B717</color>
-    <color name="yellow">#FFEA00</color>
-    <color name="red">#D90505</color>
     <color name="grey">#B7B7B7</color>
-    <color name="black">#000000</color>
+    <color name="red">#D90505</color>
     <color name="white">#FFFFFF</color>
+    <color name="yellow">#FFEA00</color>
 </resources>

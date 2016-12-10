@@ -42,8 +42,8 @@ public class Square_OnTouch_Listener implements View.OnTouchListener {
         }
 
         public Coordinates(MotionEvent event) {
-            this.x = (int) ((event.getX() - 16) / (squareView.fullSquareSize / 14));
-            this.y = (int) ((event.getY() - 16) / (squareView.fullSquareSize / 14));
+            this.x = (int) ((event.getX() - 16) / (squareView.singleSquareSize));
+            this.y = (int) ((event.getY() - 16) / (squareView.singleSquareSize));
         }
     }
 }

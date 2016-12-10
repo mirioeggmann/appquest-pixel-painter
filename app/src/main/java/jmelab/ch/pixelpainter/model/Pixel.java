@@ -29,10 +29,6 @@ public class Pixel {
         return this.color;
     }
 
-    public String getColorAsString() {
-        return String.format("#%06X", (0xFFFFFF & this.color));
-    }
-
     public Pixel(int x, int y, int color) {
         this.x = x;
         this.y = y;

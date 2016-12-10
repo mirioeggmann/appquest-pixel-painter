@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -32,7 +33,7 @@ public class Square_View extends View {
     }
 
     public void addPixelObject(Pixel pixelObject) {
-        Log.i(getClass().toString(), "Adding pixel with color " + pixelObject.getColorAsString() + " to coordinates (" + pixelObject.getX() + "/" + pixelObject.getY() + ").");
+        Log.i(getClass().toString(), "Adding pixel with color " + pixelObject.getColor() + " to coordinates (" + pixelObject.getX() + "/" + pixelObject.getY() + ").");
 
         pixelGrid[pixelObject.getX()][pixelObject.getY()] = pixelObject;
 
@@ -49,7 +50,7 @@ public class Square_View extends View {
         createDefaultPixelGrid();
 
         this.fullSquareSize = calculateSquareSize(screenSize);
-        this.singleSquareSize = fullSquareSize / 14;
+        this.singleSquareSize = fullSquareSize / 13;
         this.mainLayout = superLayout;
 
         this.setOnTouchListener(new Square_OnTouch_Listener(this));
@@ -65,11 +66,15 @@ public class Square_View extends View {
     }
 
     private int calculateSquareSize(Point screenSize) {
+        // Convert 32dp to pixel (padding) using display metrics
+        DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
+        int px = Math.round(16 * 3 * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+
         if (screenSize.x < screenSize.y) {
-            return screenSize.x;
+            return screenSize.x - px;
         }
 
-        return screenSize.y;
+        return screenSize.y - px;
     }
 
     private void updateView() {
@@ -101,14 +106,14 @@ public class Square_View extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        for (int x = 0; x < fullSquareSize; x += singleSquareSize) {
-            for (int y = 0; y < fullSquareSize; y += singleSquareSize) {
-                // Vertical
-                canvas.drawLine(x, 0, x, fullSquareSize - singleSquareSize, PAINT);
+        for (int i = 0; i <= fullSquareSize; i += singleSquareSize) {
+            Log.d(getClass().toString(), "Line number: " + String.valueOf(i / singleSquareSize));
 
-                // Horizontal
-                canvas.drawLine(0, y, fullSquareSize, y, PAINT);
-            }
+            // Vertical
+            canvas.drawLine(i, 0, i, fullSquareSize, PAINT);
+
+            // Horizontal
+            canvas.drawLine(0, i, fullSquareSize, i, PAINT);
         }
     }
 }
