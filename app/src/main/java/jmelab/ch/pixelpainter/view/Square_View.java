@@ -36,8 +36,7 @@ public class Square_View extends View {
         Log.i(getClass().toString(), "Adding pixel with color " + pixelObject.getColor() + " to coordinates (" + pixelObject.getX() + "/" + pixelObject.getY() + ").");
 
         pixelGrid[pixelObject.getX()][pixelObject.getY()] = pixelObject;
-
-        updateView();
+        addPixelToView(pixelObject);
     }
 
     public Pixel[][] getPixelGrid() {
@@ -77,31 +76,23 @@ public class Square_View extends View {
         return screenSize.y - px;
     }
 
-    private void updateView() {
+    private void addPixelToView(Pixel pixelObject) {
         if (this.pixelGrid == null) {
             Log.e(getClass().toString(), "Pixel-Grid was not initialized correctly!");
             return;
         }
 
-        Log.i(getClass().toString(), "Redrawing pixel-grid..");
+        Log.i(getClass().toString(), "Drawing pixel at " + pixelObject.getX() + ":" + pixelObject.getY());
 
-        for (int x = 0; x < pixelGrid.length; x++) {
-            for (int y = 0; y < pixelGrid[x].length; y++) {
-                if (this.pixelGrid[x][y] == null) {
-                    Log.w(getClass().toString(), "Pixel at (" + x + "/" + y + ") is missing!");
-                } else {
-                    // -2 in size and +1 in location is to create a border
-                    TextView pixel = new TextView(this.getContext());
-                    pixel.setHeight(singleSquareSize - 2);
-                    pixel.setWidth(singleSquareSize - 2);
-                    pixel.setX(singleSquareSize * pixelGrid[x][y].getX() + 1);
-                    pixel.setY(singleSquareSize * pixelGrid[x][y].getY() + 1);
-                    pixel.setBackgroundResource(pixelGrid[x][y].getColor());
+        // -2 in size and +1 in location is to create a border
+        TextView pixel = new TextView(this.getContext());
+        pixel.setHeight(singleSquareSize - 2);
+        pixel.setWidth(singleSquareSize - 2);
+        pixel.setX(singleSquareSize * pixelObject.getX() + 1);
+        pixel.setY(singleSquareSize * pixelObject.getY() + 1);
+        pixel.setBackgroundResource(pixelObject.getColor());
 
-                    mainLayout.addView(pixel);
-                }
-            }
-        }
+        mainLayout.addView(pixel);
     }
 
     @Override
